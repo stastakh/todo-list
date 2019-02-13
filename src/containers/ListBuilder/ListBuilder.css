@@ -1,0 +1,12 @@
+.ListBuilder {
+    width: 300px;
+    height: 600px;
+    border: 1px solid black;
+    margin-left: 15%;
+}
+
+@media screen and (max-width: 1024px) {
+    .ListBuilder {
+        width: 30%;
+    } 
+}
