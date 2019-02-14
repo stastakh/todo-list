@@ -11,11 +11,16 @@ class ListBuilder extends Component {
     }
 
     addListHandler = () => {
-        const newListsArr = [...this.state.lists];
-        const list = {};
-        list.name = this.state.listName;
-        newListsArr.push(list);
-        this.setState({lists: newListsArr});
+        const list = {
+            name: this.state.listName
+        };
+        
+        this.setState(prevState => {
+            return {
+                listName: "",
+                lists: prevState.lists.concat(list)
+            }
+        })
     };
 
     inputValueHandler = (event) => {
@@ -24,13 +29,24 @@ class ListBuilder extends Component {
         }   
     };
 
+    removeListHandler = (listIndex) => {
+        this.setState(prevState => {
+            return {
+                lists: prevState.lists.filter((item, index) => index !== listIndex)
+            }
+        });
+    };
+
     render() {
         return (
             <div className={classes.ListBuilder}>
                 <AddItemBlock 
                     addListHandler={this.addListHandler}
-                    inputValueHandler={this.inputValueHandler}/>
-                <ListsBlock lists={this.state.lists}/>
+                    inputValueHandler={this.inputValueHandler}
+                    listName={this.state.listName}/>
+                <ListsBlock 
+                    lists={this.state.lists}
+                    removeListHandler={this.removeListHandler}/>
             </div>
         );
     };

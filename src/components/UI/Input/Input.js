@@ -8,7 +8,8 @@ const input = props => {
             className={classes.Input} 
             type="text" 
             placeholder={props.placeholder}
-            onChange={props.change}/>
+            onChange={props.change}
+            value={props.value}/>
     );
 };
 
