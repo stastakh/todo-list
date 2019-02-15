@@ -10,7 +10,7 @@ const addItemBlock = props => (
             placeholder="List Name" 
             change={props.inputValueHandler}
             value={props.listName}/>
-        <AddButton click={props.addListHandler}>Add List</AddButton>
+        <AddButton click={props.addListHandler}>+</AddButton>
     </div>
 );
 

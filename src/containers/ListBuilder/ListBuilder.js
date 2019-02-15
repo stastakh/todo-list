@@ -40,6 +40,7 @@ class ListBuilder extends Component {
     render() {
         return (
             <div className={classes.ListBuilder}>
+                <div className={classes.TransparentBlock}></div>
                 <AddItemBlock 
                     addListHandler={this.addListHandler}
                     inputValueHandler={this.inputValueHandler}

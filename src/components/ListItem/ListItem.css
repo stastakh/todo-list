@@ -1,7 +1,32 @@
 .ListItem {
-    border: 1px solid black;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    box-shadow: none;
+    background-color: white;
+    border: 0.5px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.ListItem:hover {
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 0.5px solid rgb(206, 204, 204); 
+    box-shadow: 0.1px 0.5px 1.2px grey;
+    transition: box-shadow 0.5s ease;
 }
 
 p {
-    display: inline-block;
+    margin-left: 10px;
+    padding-right: 36px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    overflow: hidden; 
+    font-weight: 700;
+    font-size: 18px;
+    color: rgb(41, 40, 40);
 }

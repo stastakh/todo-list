@@ -1,3 +1,35 @@
 .Input {
-    
+    border: none;
+    height: 35%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.18);
+    padding-left: 8px; 
+    padding-right: 8px; 
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    caret-color: #eee;
+    color: white;
+}
+
+.Input:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.Input:focus {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.Input::placeholder {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    opacity: 1; 
+    transition: opacity 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.Input:focus::placeholder {
+    opacity: 0; 
+    transition: opacity 0.3s ease;
 }
