@@ -7,7 +7,7 @@ import ListsBlock from '../../components/ListsBlock/ListsBlock';
 class ListBuilder extends Component {
     state = {
         listName: "",
-        lists: []
+        lists: [],
     }
 
     addListHandler = () => {
@@ -23,10 +23,8 @@ class ListBuilder extends Component {
         })
     };
 
-    inputValueHandler = (event) => {
-        if(event.target.value) {
-            this.setState({listName: event.target.value});
-        }   
+    inputValueHandler = (event) => { 
+        this.setState({listName: event.target.value});  
     };
 
     removeListHandler = (listIndex) => {
@@ -40,7 +38,6 @@ class ListBuilder extends Component {
     render() {
         return (
             <div className={classes.ListBuilder}>
-                <div className={classes.TransparentBlock}></div>
                 <AddItemBlock 
                     addListHandler={this.addListHandler}
                     inputValueHandler={this.inputValueHandler}

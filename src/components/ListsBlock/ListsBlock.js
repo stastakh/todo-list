@@ -10,7 +10,9 @@ const listsBlock = props => (
                 listName={list.name}
                 key={index}
                 index={index}
-                removeListHandler={props.removeListHandler}/>
+                removeListHandler={props.removeListHandler}
+                showRemoveButtonHandler={props.showRemoveButtonHandler}
+                hideRemoveButtonHandler={props.hideRemoveButtonHandler}/>
         ))} 
     </div>
 );
