@@ -9,7 +9,7 @@ const addItemBlock = props => {
     return (
         <div className={addButtonClasses.join(" ")}>
             <Input 
-                placeholder="List Name" 
+                placeholder={props.placeholder} 
                 change={props.inputValueHandler}
                 value={props.listName}/>
             <AddButton 

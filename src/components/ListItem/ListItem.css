@@ -20,6 +20,13 @@
     transition: box-shadow, border 0.5s ease;
 }
 
+.activeItem {
+    background-color: rgb(231, 228, 228);
+    border: 0.5px solid rgb(206, 204, 204); 
+    box-shadow: 0.1px 0.5px 1.2px grey;
+    transition: background-color 0.18s ease;
+}
+
 p {
     margin-left: 10px;
     padding-right: 36px;

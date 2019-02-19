@@ -1,0 +1,17 @@
+.PositionsBlock {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 15px;
+}
+
+.Positions {
+    height: 427px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px 50px;
+}
+
+h1 {
+    color: rgb(48, 46, 46);
+    margin: 0;
+}

@@ -5,7 +5,7 @@ import RemoveButton from '../UI/RemoveButton/RemoveBotton';
 
 class ListItem extends Component {
     state = {
-        showRemoveButton: false
+        showRemoveButton: false,  
     }
 
     showRemoveButtonHandler = () => {
@@ -16,12 +16,16 @@ class ListItem extends Component {
         this.setState({showRemoveButton: false});
     };
 
+
     render() {
+        const stylesCss = [classes.ListItem]
+            // this.props.currentItem.activeItem ? classes.activeItem : null];
         return (
             <div 
-                className={classes.ListItem} 
+                className={stylesCss.join(" ")} 
                 onMouseOver={this.showRemoveButtonHandler}
-                onMouseOut={this.hideRemoveButtonHandler}>
+                onMouseOut={this.hideRemoveButtonHandler}
+                onClick={this.props.listItemClicked.bind(this, this.props.index)}>
                     <p>{this.props.listName}</p>
                     <RemoveButton 
                         click={this.props.removeListHandler.bind(this, this.props.index)}

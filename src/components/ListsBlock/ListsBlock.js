@@ -11,8 +11,9 @@ const listsBlock = props => (
                 key={index}
                 index={index}
                 removeListHandler={props.removeListHandler}
-                showRemoveButtonHandler={props.showRemoveButtonHandler}
-                hideRemoveButtonHandler={props.hideRemoveButtonHandler}/>
+                listItemClicked={props.listItemClicked}
+                currentItem={props.currentItem}/>
+                // activeItem={props.activeItem}/>
         ))} 
     </div>
 );

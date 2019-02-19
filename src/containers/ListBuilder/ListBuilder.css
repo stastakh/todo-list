@@ -5,6 +5,17 @@
     margin: auto;
     padding: 10px 10px 3px 10px;
     background-color: rgba(238, 238, 238, 0.25); 
+    display: flex;
+}
+
+.ListsBlock {
+    display: inline-block;
+}
+
+.ListPositionsBlock {
+    display: inline-block;
+    width: 73.5%;
+    margin-left: 5px;
 }
 
 @media screen and (max-width: 1024px) {
