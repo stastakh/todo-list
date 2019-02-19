@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import classes from './ListItem.css';
 import RemoveButton from '../UI/RemoveButton/RemoveBotton';
 
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions/actionTypes';
+
 class ListItem extends Component {
     state = {
-        showRemoveButton: false,  
+        showRemoveButton: false,
     }
 
     showRemoveButtonHandler = () => {
@@ -16,16 +19,15 @@ class ListItem extends Component {
         this.setState({showRemoveButton: false});
     };
 
-
     render() {
-        const stylesCss = [classes.ListItem]
-            // this.props.currentItem.activeItem ? classes.activeItem : null];
+        const stylesCss = [classes.ListItem,
+            this.props.active ? classes.activeItem : null];
         return (
             <div 
                 className={stylesCss.join(" ")} 
                 onMouseOver={this.showRemoveButtonHandler}
                 onMouseOut={this.hideRemoveButtonHandler}
-                onClick={this.props.listItemClicked.bind(this, this.props.index)}>
+                onClick={this.props.toListItemClicked.bind(this, this.props.index)}>
                     <p>{this.props.listName}</p>
                     <RemoveButton 
                         click={this.props.removeListHandler.bind(this, this.props.index)}
@@ -35,4 +37,16 @@ class ListItem extends Component {
     }    
 };
 
-export default ListItem;
+const mapStateToProps = state => {
+    return {
+        active: state.currentItem.active
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toListItemClicked: (itemIndex) => dispatch({type: actionTypes.LIST_CLICKED, itemIndex: itemIndex})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

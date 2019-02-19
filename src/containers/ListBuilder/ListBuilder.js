@@ -6,39 +6,22 @@ import ListsBlock from '../../components/ListsBlock/ListsBlock';
 import ListPositionsBuilder from './ListPositionsBuilder/ListPositionsBuilder';
 import PositionsBlock from './PositionsBlock/PositionsBlock';
 
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions/actionTypes';
+
 class ListBuilder extends Component {
     state = {
-        list: {
-            name: "",
-        },
-        lists: [],
-        currentItem: null
-    }
-
-    addListHandler = () => {
-        this.setState(prevState => {
-            return {
-                lists: prevState.lists.concat(prevState.list),
-                list: {name: ""}
-            }
-        })
+        listName: ""
     };
 
     inputValueHandler = (event) => { 
-        this.setState({list: {name: event.target.value}});  
+        this.setState({listName: event.target.value});  
     };
 
-    removeListHandler = (listIndex) => {
-        const listsArr = [...this.state.lists];
-        this.setState({lists: listsArr.filter((item, index) => index !== listIndex)})
-    };
-
-    listItemClicked = (itemIndex) => {
-        const listsArr = [...this.state.lists];
-        if(this.state.currentItem !== listsArr[itemIndex]) {
-            this.setState({currentItem: listsArr[itemIndex]});
-        } 
-    };
+    addListHandler = () => {
+        this.props.toAddList(this.state.listName);
+        this.setState({listName: ""});
+    }
 
     render() {
         return (
@@ -46,22 +29,35 @@ class ListBuilder extends Component {
                 <div className={classes.ListsBlock}>
                     <AddItemBlock 
                         placeholder="List Name"
-                        addListHandler={this.addListHandler}
+                        listName={this.state.listName}
                         inputValueHandler={this.inputValueHandler}
-                        listName={this.state.list.name}/>
+                        addListHandler={this.addListHandler}/>
                     <ListsBlock 
-                        lists={this.state.lists}
-                        removeListHandler={this.removeListHandler}
-                        listItemClicked={this.listItemClicked}
-                        currentItem={this.state.currentItem}/>
+                        lists={this.props.lists}
+                        removeListHandler={this.props.toRemoveList}
+                        currentItem={this.props.currentItem}/>
                 </div>
                 <div className={classes.ListPositionsBlock}>
                     <ListPositionsBuilder />
-                    <PositionsBlock currentList={this.state.currentItem}/>
+                    <PositionsBlock currentList={this.props.currentItem}/>
                 </div>     
             </div>
         );
     };
 };
 
-export default ListBuilder;
+const mapStateToProps = state => {
+    return {
+        lists: state.lists,
+        currentItem: state.currentItem
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toAddList: (listName) => dispatch({type: actionTypes.ADD_LIST, listName: listName}),
+        toRemoveList: (itemIndex) => dispatch({type: actionTypes.REMOVE_LIST, itemIndex: itemIndex}),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListBuilder);

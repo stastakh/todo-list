@@ -10,9 +10,9 @@ const listsBlock = props => (
                 listName={list.name}
                 key={index}
                 index={index}
-                removeListHandler={props.removeListHandler}
-                listItemClicked={props.listItemClicked}
-                currentItem={props.currentItem}/>
+                removeListHandler={props.removeListHandler} />
+                // listItemClicked={props.listItemClicked} />
+                // currentItem={props.currentItem}/>
                 // activeItem={props.activeItem}/>
         ))} 
     </div>
