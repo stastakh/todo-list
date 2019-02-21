@@ -9,7 +9,8 @@ const input = props => {
             type="text" 
             placeholder={props.placeholder}
             onChange={props.change}
-            value={props.value}/>
+            value={props.value}
+            disabled={props.disabled}/>
     );
 };
 

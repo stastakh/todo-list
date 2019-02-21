@@ -6,7 +6,7 @@ import AddButton from '../UI/AddButton/AddButton';
 
 const addItemBlock = props => {
     const addButtonClasses = [classes.AddItemBlock, 
-        props.listName 
+        props.value 
         ? classes.anabled 
         : classes.disabled];
     
@@ -14,11 +14,12 @@ const addItemBlock = props => {
         <div className={addButtonClasses.join(" ")}>
             <Input 
                 placeholder={props.placeholder} 
-                change={props.inputValueHandler}
-                value={props.listName}/>
+                change={props.change}
+                value={props.value}
+                disabled={props.disabled}/>
             <AddButton 
-                click={props.addListHandler}
-                disabled={props.listName}>+</AddButton>
+                click={props.addItem}
+                disabled={props.value}>+</AddButton>
         </div>
     );    
 };

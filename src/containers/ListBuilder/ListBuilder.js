@@ -14,7 +14,7 @@ class ListBuilder extends Component {
         listName: ""
     };
 
-    inputValueHandler = (event) => { 
+    listInputValueHandler = (event) => { 
         this.setState({listName: event.target.value});  
     };
 
@@ -29,17 +29,16 @@ class ListBuilder extends Component {
                 <div className={classes.ListsBlock}>
                     <AddItemBlock 
                         placeholder="List Name"
-                        listName={this.state.listName}
-                        inputValueHandler={this.inputValueHandler}
-                        addListHandler={this.addListHandler}/>
+                        value={this.state.listName}
+                        change={this.listInputValueHandler}
+                        addItem={this.addListHandler}/>
                     <ListsBlock 
                         lists={this.props.lists}
-                        removeListHandler={this.props.toRemoveList}
-                        currentItem={this.props.currentItem}/>
+                        removeListHandler={this.props.toRemoveList}/>
                 </div>
                 <div className={classes.ListPositionsBlock}>
                     <ListPositionsBuilder />
-                    <PositionsBlock currentList={this.props.currentItem}/>
+                    <PositionsBlock />
                 </div>     
             </div>
         );
@@ -48,8 +47,7 @@ class ListBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        lists: state.lists,
-        currentItem: state.currentItem
+        lists: state.lists
     };
 };
 

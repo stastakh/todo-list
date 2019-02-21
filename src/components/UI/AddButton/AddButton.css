@@ -24,6 +24,7 @@
 }
 
 .AddButton:disabled {
+    color: rgb(185, 181, 181);
     border: none;
     box-shadow: none;
     cursor: default;
