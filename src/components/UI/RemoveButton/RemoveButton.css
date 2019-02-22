@@ -23,12 +23,12 @@
 
 .RemoveButton:hover {
     opacity: 1;
-    border: 0.2px solid #eee;
+    border: 0.1px solid #eee;
 }
 
 .RemoveButton:before, .RemoveButton:after {
     position: absolute;
-    left: 46%;
+    left: 45%;
     top: 25%;
     content: ' ';
     height: 10px;

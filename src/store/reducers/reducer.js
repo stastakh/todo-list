@@ -27,16 +27,20 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.LIST_CLICKED:
             const listsArr = state.lists.map((list, index) => {
-                if(index === action.itemIndex) {
-                    return {
-                        ...list,
-                        active: !list.active
-                    } 
-                } 
                 return list = {
                     ...list,
-                    active: false
+                    active:  index === action.itemIndex ? true : false
                 }
+                // if(index === action.itemIndex) {
+                //     return {
+                //         ...list,
+                //         active: !list.active
+                //     } 
+                // } 
+                // return list = {
+                //     ...list,
+                //     active: false
+                // }
             });
             let curItem = {};
             listsArr.forEach(list => {
@@ -44,14 +48,13 @@ const reducer = (state = initialState, action) => {
                     curItem = {...list}
                 }
             })
-            console.log(curItem);
             return {
                 ...state,
                 lists: listsArr,
                 currentItem: curItem,
             }
         case actionTypes.ADD_POSITION:
-            const position = {name: action.positionName};
+            const position = {name: action.positionName, completed: false};
             const currList = {
                 ...state.currentItem, 
                 positions: [...state.currentItem.positions.concat(position)]
@@ -71,6 +74,29 @@ const reducer = (state = initialState, action) => {
                     }
                 })
             }
+        // case actionTypes.POSITION_COMPLETE_TOGGLE:
+            // return {
+            //     ...state,
+            //     currentItem: {
+            //         ...state.currentItem,
+            //         positions: [
+            //             ...state.currentItem.positions,
+            //             {
+            //                 ...state.currentItem.positions[action.itemIndex],
+            //                 completed: !state.currentItem.positions[action.itemIndex].completed
+            //             }
+            //         ]
+            //     },
+            //     lists: state.lists.map((list, index) => {
+            //         return list = {
+            //             ...list,
+            //             // active: index === action.itemIndex ? true : false
+            //             positions: {
+            //                 ...state.currentItem.positions,
+            //             }
+            //         }  
+            //     })
+            // }
         default:
             return state;
     }

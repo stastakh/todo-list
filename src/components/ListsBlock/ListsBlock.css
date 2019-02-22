@@ -8,6 +8,6 @@
     overflow-y: scroll; 
 }
 
-.ListsBlock::-webkit-scrollbar {
+/* .ListsBlock::-webkit-scrollbar {
     width: 1px;
-}
+} */

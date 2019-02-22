@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import classes from './ListItem.css';
-import RemoveButton from '../UI/RemoveButton/RemoveBotton';
+import RemoveButton from '../UI/RemoveButton/RemoveButton';
 
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/actionTypes';
