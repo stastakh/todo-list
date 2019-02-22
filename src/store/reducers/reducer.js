@@ -10,7 +10,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.ADD_LIST:
+        case actionTypes.ADD_LIST: // ADDS NEW LIST
             const listItem = {
                 name: action.listName,
                 active: false,
@@ -20,27 +20,17 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 lists: state.lists.concat(listItem)
             };
-        case actionTypes.REMOVE_LIST:
+        case actionTypes.REMOVE_LIST: // REMOVES LIST
             return {
                 ...state,
                 lists: state.lists.filter((item, index) => index !== action.itemIndex)
             };
-        case actionTypes.LIST_CLICKED:
+        case actionTypes.LIST_CLICKED: // ACTIVATES CLICKED LIST
             const listsArr = state.lists.map((list, index) => {
                 return list = {
                     ...list,
                     active:  index === action.itemIndex ? true : false
                 }
-                // if(index === action.itemIndex) {
-                //     return {
-                //         ...list,
-                //         active: !list.active
-                //     } 
-                // } 
-                // return list = {
-                //     ...list,
-                //     active: false
-                // }
             });
             let curItem = {};
             listsArr.forEach(list => {
@@ -53,7 +43,7 @@ const reducer = (state = initialState, action) => {
                 lists: listsArr,
                 currentItem: curItem,
             }
-        case actionTypes.ADD_POSITION:
+        case actionTypes.ADD_POSITION: // ADDS NEW POSITION
             const position = {name: action.positionName, completed: false};
             const currList = {
                 ...state.currentItem, 
@@ -74,29 +64,46 @@ const reducer = (state = initialState, action) => {
                     }
                 })
             }
-        // case actionTypes.POSITION_COMPLETE_TOGGLE:
-            // return {
-            //     ...state,
-            //     currentItem: {
-            //         ...state.currentItem,
-            //         positions: [
-            //             ...state.currentItem.positions,
-            //             {
-            //                 ...state.currentItem.positions[action.itemIndex],
-            //                 completed: !state.currentItem.positions[action.itemIndex].completed
-            //             }
-            //         ]
-            //     },
-            //     lists: state.lists.map((list, index) => {
-            //         return list = {
-            //             ...list,
-            //             // active: index === action.itemIndex ? true : false
-            //             positions: {
-            //                 ...state.currentItem.positions,
-            //             }
-            //         }  
-            //     })
-            // }
+        case actionTypes.POSITION_COMPLETE_TOGGLE: // TOGGLES POSITION'S CHECKBOX AND COMPLETE PROP
+            return {
+                ...state,
+                currentItem: {
+                    ...state.currentItem,
+                    positions: state.currentItem.positions.map((position, index) => {
+                        if(index === action.itemIndex) {
+                            return {
+                                ...position,
+                                completed: !position.completed
+                            }   
+                        }
+                        return {
+                            ...position
+                        }
+                    }),
+                },
+                lists: state.lists.map((list) => {
+                    if(list.name === state.currentItem.name) {
+                        return {
+                            ...list,
+                            active: state.currentItem.active,
+                            positions: state.currentItem.positions.map((position, index) => {
+                                if(index === action.itemIndex) {
+                                    return {
+                                        ...position,
+                                        completed: !position.completed
+                                    }
+                                }
+                                return {
+                                    ...position
+                                }
+                            })
+                        }
+                    }
+                    return {
+                        ...list
+                    } 
+                })               
+            }
         default:
             return state;
     }

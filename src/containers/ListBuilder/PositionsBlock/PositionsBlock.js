@@ -4,6 +4,7 @@ import classes from './PositionsBlock.css';
 import RemoveButton from '../../../components/UI/RemoveButton/RemoveButton';
 
 import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions/actionTypes';
 
 class PositionsBlock extends Component {
     render() {
@@ -13,15 +14,20 @@ class PositionsBlock extends Component {
                     {this.props.currentList.active ?
                         <>  
                             <h1>{this.props.currentList.name}</h1>
-                            {this.props.currentList.positions.map((position, index) => (
-                                <div 
-                                    className={classes.Position} 
-                                    key={index}>
-                                    <span className={classes.Checkbox}></span>
-                                    <p className={classes.PositionText}>{position.name}</p>
-                                    <RemoveButton showRemoveButton/>
-                                </div>
-                            ))}    
+                            {this.props.currentList.positions.map((position, index) => {
+                                const checkboxStyles = [classes.Checkbox, position.completed ? classes.Checkbox_checked : null];
+                                return (
+                                    <div 
+                                        className={classes.Position} 
+                                        key={index}>
+                                        <span 
+                                            className={checkboxStyles.join(" ")}
+                                            onClick={this.props.onTogglePositionComplete.bind(this, index)}></span>
+                                        <p className={position.completed ? classes.PositionTextChecked : classes.PositionText}>{position.name}</p>
+                                        <RemoveButton showRemoveButton/>
+                                    </div>
+                                );
+                            })}   
                         </>
                         : null}    
                 </div>
@@ -38,7 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        onTogglePositionComplete: (itemIndex) => dispatch({type: actionTypes.POSITION_COMPLETE_TOGGLE, itemIndex: itemIndex})
     };
 };
 
