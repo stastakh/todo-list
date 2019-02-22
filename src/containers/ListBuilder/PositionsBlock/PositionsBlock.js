@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import classes from './PositionsBlock.css';
-import RemoveButton from '../../../components/UI/RemoveButton/RemoveButton';
+import Position from '../../../components/Position/Position';
 
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions/actionTypes';
@@ -14,20 +14,13 @@ class PositionsBlock extends Component {
                     {this.props.currentList.active ?
                         <>  
                             <h1>{this.props.currentList.name}</h1>
-                            {this.props.currentList.positions.map((position, index) => {
-                                const checkboxStyles = [classes.Checkbox, position.completed ? classes.Checkbox_checked : null];
-                                return (
-                                    <div 
-                                        className={classes.Position} 
-                                        key={index}>
-                                        <span 
-                                            className={checkboxStyles.join(" ")}
-                                            onClick={this.props.onTogglePositionComplete.bind(this, index)}></span>
-                                        <p className={position.completed ? classes.PositionTextChecked : classes.PositionText}>{position.name}</p>
-                                        <RemoveButton showRemoveButton/>
-                                    </div>
-                                );
-                            })}   
+                            {this.props.currentList.positions.map((position, index) => (
+                                <Position 
+                                    key={index} 
+                                    completed={position.completed}
+                                    name={position.name}
+                                    onTogglePositionComplete={this.props.onTogglePositionComplete.bind(this, index)}/>     
+                            ))}   
                         </>
                         : null}    
                 </div>
