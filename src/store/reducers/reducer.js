@@ -104,6 +104,25 @@ const reducer = (state = initialState, action) => {
                     } 
                 })               
             }
+        case actionTypes.REMOVE_POSITION: // REMOVE POSITION FROM LIST AND CURRENT POSITION
+            return {
+                ...state,
+                currentItem: {
+                    ...state.currentItem,
+                    positions: state.currentItem.positions.filter((item, index) => index !== action.itemIndex)
+                },
+                lists: state.lists.map((list) => {
+                    if(list.name === state.currentItem.name) {
+                        return {
+                            ...state.currentItem,
+                            positions: state.currentItem.positions.filter((item, index) => index !== action.itemIndex)
+                        }
+                    }
+                    return {
+                        ...list
+                    }
+                })
+            }
         default:
             return state;
     }

@@ -19,7 +19,8 @@ class PositionsBlock extends Component {
                                     key={index} 
                                     completed={position.completed}
                                     name={position.name}
-                                    onTogglePositionComplete={this.props.onTogglePositionComplete.bind(this, index)}/>     
+                                    onTogglePositionComplete={this.props.onTogglePositionComplete.bind(this, index)}    
+                                    onPositionRemove={this.props.onPositionRemove.bind(this, index)}/>     
                             ))}   
                         </>
                         : null}    
@@ -37,7 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTogglePositionComplete: (itemIndex) => dispatch({type: actionTypes.POSITION_COMPLETE_TOGGLE, itemIndex: itemIndex})
+        onTogglePositionComplete: (itemIndex) => dispatch({type: actionTypes.POSITION_COMPLETE_TOGGLE, itemIndex: itemIndex}),
+        onPositionRemove: (itemIndex) => dispatch({type: actionTypes.REMOVE_POSITION, itemIndex: itemIndex})
     };
 };
 

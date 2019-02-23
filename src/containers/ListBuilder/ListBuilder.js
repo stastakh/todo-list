@@ -34,7 +34,8 @@ class ListBuilder extends Component {
                         addItem={this.addListHandler}/>
                     <ListsBlock 
                         lists={this.props.lists}
-                        removeListHandler={this.props.toRemoveList}/>
+                        removeListHandler={this.props.toRemoveList}
+                        active={this.props.active}/>
                 </div>
                 <div className={classes.ListPositionsBlock}>
                     <ListPositionsBuilder />
@@ -47,7 +48,8 @@ class ListBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        lists: state.lists
+        lists: state.lists,
+        active: state.currentItem.active
     };
 };
 

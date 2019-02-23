@@ -12,7 +12,9 @@ const position = props => {
                 className={checkboxStyles.join(" ")}
                 onClick={props.onTogglePositionComplete}></span>
             <p className={props.completed ? classes.PositionTextChecked : classes.PositionText}>{props.name}</p>
-            <RemoveButton showRemoveButton/>
+            <RemoveButton 
+                showRemoveButton
+                click={props.onPositionRemove}/>
         </div>
     );
 };

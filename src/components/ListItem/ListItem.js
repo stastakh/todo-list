@@ -20,8 +20,7 @@ class ListItem extends Component {
     };
 
     render() {
-        const stylesCss = [classes.ListItem,
-            this.props.active ? classes.activeItem : null];
+        const stylesCss = [classes.ListItem, this.props.active ? classes.activeItem : null];
         return (
             <div 
                 className={stylesCss.join(" ")} 
@@ -37,11 +36,11 @@ class ListItem extends Component {
     }    
 };
 
-const mapStateToProps = state => {
-    return {
-        active: state.currentItem.active
-    };
-};
+// const mapStateToProps = state => {
+//     return {
+//         active: state.currentItem.active
+//     };
+// };
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -49,4 +48,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
+export default connect(null, mapDispatchToProps)(ListItem);
