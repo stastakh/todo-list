@@ -23,24 +23,18 @@ class ListItem extends Component {
         const stylesCss = [classes.ListItem, this.props.active ? classes.activeItem : null];
         return (
             <div 
-                className={stylesCss.join(" ")} 
+                className={stylesCss.join(" ")}
                 onMouseOver={this.showRemoveButtonHandler}
                 onMouseOut={this.hideRemoveButtonHandler}
                 onClick={this.props.toListItemClicked.bind(this, this.props.index)}>
                     <p>{this.props.listName}</p>
                     <RemoveButton 
-                        click={this.props.removeListHandler.bind(this, this.props.index)}
+                        click={this.props.removeListHandler.bind(this, this.props.index)} 
                         showRemoveButton={this.state.showRemoveButton}/>
             </div>
         );
     }    
 };
-
-// const mapStateToProps = state => {
-//     return {
-//         active: state.currentItem.active
-//     };
-// };
 
 const mapDispatchToProps = dispatch => {
     return {

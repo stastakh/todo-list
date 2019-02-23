@@ -4,6 +4,7 @@ const initialState = {
     lists: [],
     currentItem: {
         active: false,
+        index: null,
         positions: []
     },
 }
@@ -35,7 +36,10 @@ const reducer = (state = initialState, action) => {
             let curItem = {};
             listsArr.forEach(list => {
                 if(list.active) {
-                    curItem = {...list}
+                    curItem = {
+                        ...list,
+                        index: action.itemIndex
+                    }
                 }
             })
             return {
