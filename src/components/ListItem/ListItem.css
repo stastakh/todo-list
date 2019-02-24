@@ -36,4 +36,6 @@ p {
     font-weight: 700;
     font-size: 18px;
     color: rgb(41, 40, 40);
+    width: 180px;
+    text-align: start;
 }
