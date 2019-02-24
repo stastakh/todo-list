@@ -1,25 +1,43 @@
 .ListBuilder {
-    width: 1000px;
+    width: 80%;
     min-height: 600px;
     border-radius: 10px;
     margin: auto;
-    padding: 10px 10px 3px 10px;
+    padding: 10px 13px 3px 10px;
     background-color: rgba(238, 238, 238, 0.25); 
     display: flex;
 }
 
-.ListsBlock {
-    display: inline-block;
+.ListsSection {
+    width: 25%;
 }
 
-.ListPositionsBlock {
+.PositionsSection {
     display: inline-block;
-    width: 73.5%;
+    width: 75%;
     margin-left: 5px;
 }
 
-@media screen and (max-width: 1024px) {
-    .ListBuilder {
+@media screen and (max-width: 768px) {
+    .ListsSection {
         width: 30%;
-    } 
+    }
+
+    .PositionsSection {
+        width: 70%;
+    }
 }
+
+@media screen and (max-width: 1023px) {
+    .ListBuilder {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ListBuilder {
+        width: 1000px;
+    }
+}
+
+

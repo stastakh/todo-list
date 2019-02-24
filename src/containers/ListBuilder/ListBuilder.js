@@ -26,7 +26,7 @@ class ListBuilder extends Component {
     render() {
         return (
             <div className={classes.ListBuilder}>
-                <div className={classes.ListsBlock}>
+                <div className={classes.ListsSection}>
                     <AddItemBlock 
                         placeholder="List Name"
                         value={this.state.listName}
@@ -37,7 +37,7 @@ class ListBuilder extends Component {
                         removeListHandler={this.props.toRemoveList}
                         listIndex={this.props.listIndex}/>
                 </div>
-                <div className={classes.ListPositionsBlock}>
+                <div className={classes.PositionsSection}>
                     <ListPositionsBuilder />
                     <PositionsBlock />
                 </div>     

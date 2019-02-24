@@ -61,3 +61,20 @@ h1 {
     left: 21%;
     top: 45%;
 }
+
+@media screen and (max-width: 1024px) {
+    .PositionText, .PositionTextChecked {
+        border-bottom: 1.5px solid rgb(231, 229, 229);
+        margin: 0;
+        width: 80%;
+        padding: 5px 0;
+        text-align: start;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .PositionText, .PositionTextChecked {
+        width: 72%;
+    }
+}
