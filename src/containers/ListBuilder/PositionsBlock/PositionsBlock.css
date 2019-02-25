@@ -8,7 +8,7 @@
     height: 427px;
     overflow-y: scroll; 
     border-radius: 10px;
-    background-color: white;
+    background-color: rgba(250, 250, 250, 0.95);
     padding: 20px 50px;
 }
 

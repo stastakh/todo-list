@@ -22,18 +22,19 @@ class ListPositionsBuilder extends Component {
     render() {
         return (
             <AddItemBlock 
-                placeholder="List's Position"
+                placeholder={this.props.currentListName ? this.props.currentListName  + " List Position" : "List Position"}
                 change={this.positionInputValueHandler}
                 value={this.state.positionName}
                 addItem={this.addPositionHandler}
-                disabled={this.props.disabledPositionInput}/>   
+                disabled={!this.props.active}/>   
         );
     };
 };
 
 const mapStateToProps = state => {
     return {
-        disabledPositionInput: state.currentItem.active === false
+        active: state.currentItem.active,
+        currentListName: state.currentItem.name
     };
 };
 

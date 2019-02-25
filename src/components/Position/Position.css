@@ -14,8 +14,8 @@ h1 {
 .PositionText, .PositionTextChecked {
     border-bottom: 1.5px solid rgb(231, 229, 229);
     margin: 0;
-    width: 85%;
-    padding: 5px 0;
+    width: 80%;
+    padding: 5px;
     text-align: start;
     color: black;
 }
