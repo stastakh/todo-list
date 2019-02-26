@@ -6,11 +6,10 @@
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.18);
+    background-color: rgb(190, 188, 188);
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    opacity: 0.8;
 }
 
 .ShowButton {
@@ -22,8 +21,7 @@
 }
 
 .RemoveButton:hover {
-    opacity: 1;
-    border: 0.1px solid #eee;
+    background-color: rgb(168, 166, 166);
 }
 
 .RemoveButton:before, .RemoveButton:after {

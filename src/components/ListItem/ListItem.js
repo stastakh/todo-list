@@ -8,38 +8,59 @@ import * as actionTypes from '../../store/actions/actionTypes';
 
 class ListItem extends Component {
     state = {
-        showRemoveButton: false,
+        showButtons: false,
+        listName: this.props.listName
     }
 
-    showRemoveButtonHandler = () => {
-        this.setState({showRemoveButton: true});
+    showButtonsHandler = () => {
+        this.setState({showButtons: true});
     };
     
-    hideRemoveButtonHandler = () => {
-        this.setState({showRemoveButton: false});
+    hideButtonsHandler = () => {
+        this.setState({showButtons: false});
     };
 
+    listNameChangeHandler = (event) => {
+        if(event.target.value) {
+            this.setState({listName: event.target.value});
+            this.props.toListUpdate(event.target.value);
+        }    
+    }
+
     render() {
-        const stylesCss = [classes.ListItem, this.props.active ? classes.activeItem : null];
+        const listBlockStyles = [classes.ListItem, this.props.active ? classes.activeItem : null];
+        const listInputStyles = [this.state.showButtons ? classes.ListNameShort : classes.ListName, this.props.active ? classes.ListNameActive : null];
         return (
             <div 
-                className={stylesCss.join(" ")}
-                onMouseOver={this.showRemoveButtonHandler}
-                onMouseOut={this.hideRemoveButtonHandler}
+                className={listBlockStyles.join(" ")}
+                onMouseOver={this.showButtonsHandler}
+                onMouseOut={this.hideButtonsHandler}
                 onClick={this.props.toListItemClicked.bind(this, this.props.index)}>
-                    <p>{this.props.listName}</p>
+                    <input 
+                        type="text" 
+                        className={listInputStyles.join(" ")} 
+                        value={this.state.listName} 
+                        disabled={this.state.inputNameDisabled} 
+                        onChange={this.listNameChangeHandler}/>
                     <RemoveButton 
                         click={this.props.removeListHandler.bind(this, this.props.index)} 
-                        showRemoveButton={this.state.showRemoveButton}/>
+                        showRemoveButton={this.state.showButtons}/>
             </div>
         );
     }    
 };
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        toListItemClicked: (itemIndex) => dispatch({type: actionTypes.LIST_CLICKED, itemIndex: itemIndex})
+        itemActive: state.currentItem.active,
     };
 };
 
-export default connect(null, mapDispatchToProps)(ListItem);
+const mapDispatchToProps = dispatch => {
+    return {
+        toListItemClicked: (itemIndex) => dispatch({type: actionTypes.LIST_CLICKED, itemIndex: itemIndex}),
+        toListUpdate: (newValue) => dispatch({type: actionTypes.LIST_UPDATE, newValue: newValue})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

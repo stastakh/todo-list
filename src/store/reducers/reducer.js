@@ -46,7 +46,30 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 lists: listsArr,
                 currentItem: curItem,
-            }
+            };
+        case actionTypes.LIST_UPDATE: // UPDATES LIST NAME
+            return {
+                ...state,
+                currentItem: {
+                    ...state.currentItem,
+                    name: action.newValue
+                },
+                lists: state.lists.map((list, index)=> {
+                    if(index === state.currentItem.index) {
+                        return {
+                            ...list,
+                            name: action.newValue,
+                            positions: [...list.positions]
+                        }
+                    }
+                    return {
+                        ...list
+                    }
+                })
+            };
+            
+        //----------------------|POSITIONS|---------------------------//
+        
         case actionTypes.ADD_POSITION: // ADDS NEW POSITION
             const position = {name: action.positionName, completed: false};
             const currList = {
@@ -67,7 +90,7 @@ const reducer = (state = initialState, action) => {
                         ...list
                     }
                 })
-            }
+            };
         case actionTypes.POSITION_COMPLETE_TOGGLE: // TOGGLES POSITION'S CHECKBOX AND COMPLETE PROP
             return {
                 ...state,
@@ -107,7 +130,7 @@ const reducer = (state = initialState, action) => {
                         ...list
                     } 
                 })               
-            }
+            };
         case actionTypes.REMOVE_POSITION: // REMOVE POSITION FROM LIST AND CURRENT POSITION
             return {
                 ...state,
@@ -126,7 +149,7 @@ const reducer = (state = initialState, action) => {
                         ...list
                     }
                 })
-            }
+            };
         default:
             return state;
     }

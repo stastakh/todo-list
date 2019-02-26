@@ -10,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    height: 57px;
 }
 
 .ListItem:hover {
@@ -21,21 +22,41 @@
 }
 
 .activeItem {
-    background-color: rgba(219, 217, 217, 1);
+    background-color: rgb(219, 217, 217);
     border: 0.5px solid rgb(206, 204, 204); 
     box-shadow: 0.1px 0.5px 1.2px grey;
     transition: background-color 0.18s ease;
 }
 
-p {
+.ListName, .ListNameShort, .ListNameActive {
+    background-color: white;
     margin-left: 10px;
-    padding-right: 36px;
     text-overflow: ellipsis;
     white-space: nowrap; 
     overflow: hidden; 
     font-weight: 700;
     font-size: 18px;
     color: rgb(41, 40, 40);
-    width: 180px;
-    text-align: start;
+    width: 185px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 6px; 
+}
+
+.ListNameShort {
+    width: 160px;
+}
+
+.ListNameActive {
+    background-color: rgb(219, 217, 217);
+}
+
+.ListNameActive:hover {
+    background-color: rgb(196, 194, 194);
+    transition: background-color 0.3s ease;
+}
+
+.ListNameActive:focus {
+    background-color: rgb(196, 194, 194);
 }
